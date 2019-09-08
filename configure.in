@@ -1,0 +1,33 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.63])
+AC_INIT([maketh], [0.2.0], [null.sim@gmail.com])
+AM_INIT_AUTOMAKE
+AC_CONFIG_SRCDIR([inc/recv.h])
+AC_CONFIG_HEADERS([inc/config-system.h])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Check OS
+OSNAME=$(uname -s)
+if test "$OSNAME" = "Linux" ;
+then
+AC_DEFINE_UNQUOTED([__OS_IS_LINUX], [], [Linux system])
+else
+AC_DEFINE_UNQUOTED([__OS_IS_BSD], [], [OS for Barbu user xD])
+fi
+
+# Check architecture proc
+AC_C_BIGENDIAN([AC_DEFINE([__PROC_IS_BIG_ENDIAN], [], [proc is big endian])],[AC_DEFINE([__PROC_IS_LITTLE_ENDIAN], [], [proc is little endian])])
+
+# Add argument for LDFLAGS
+LDFLAGS=-lpthread
+AC_SUBST(LDFLAGS)
+
+# Checks for library functions.
+AC_FUNC_ERROR_AT_LINE
+AC_CONFIG_FILES([Makefile
+                 src/Makefile])
+AC_OUTPUT

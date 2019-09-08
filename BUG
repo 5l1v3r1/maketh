@@ -1,0 +1,14 @@
+
+
+	BUG
+
+  If you found any bugs please send mail at : null.sim@gmail.com
+  Subject : (Maketh) Bugs repport
+
+
+
+
+  BUG LIST BSD SYSTEM :
+
+    - Read dmesg ioctl warning : WARNING pid 5642 (maketh): ioctl sign-extension ioctl ffffffff8085412
+    - sometimes all packet not recevied ... why ? I don't know ... .

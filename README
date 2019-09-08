@@ -1,0 +1,267 @@
+
+        ****************************
+        *          MAKETH          *
+        ****************************
+
+        Author : Simpp (null.sim@gmail.com)
+	Why: Just for fun
+
+	Home projet: http://simpp-kode.tuxfamily.org/maketh/index.html 
+
+
+ 1) Description
+ 2) Arguments FR - US
+
+
+
+  1) Description :
+  ---------------
+
+  FR
+  --
+   Maketh est un programme libre sous licence GNU/GPL pour Linux/BSD.
+   Il est destiné a forger toute sorte de paquet, de la couche reseau
+   à la couche transport.
+   Il forge des paquets de type ARP, IP, TCP, UDP, ICMP, avec possibilité
+   de forger l'entete Ethernet.
+
+  US
+  --
+   Maketh is free software for Linux and BSD system.
+   It' builds packets, from the network layer to the transport layer.
+   It's forges packet's like ARP, IP, TCP, UDP, ICMP, and it's possible to forge
+   Ethernet header too.
+
+
+
+  2) Arguments :
+  -------------
+
+    ********
+    *  FR  *
+    ********
+       ||
+       ||
+       \/
+
+  PROGRAM INFORMATION :
+  --------------------
+    --help or -h                           : Affiche le menu aide, -h affiche l'aide US
+                                             -hh affiche l'aide FR
+    --version or -v                        : Affiche la version du programme
+
+    PROGRAM CONFIG :
+    ---------------
+    --count or -c [COUNT]                  : Nombre de paquet a envoyer
+    --data or -l [LEN DATA]                : Taille des données.
+    --file or -f [FILE NAME]               : Lire les données dans un fichier
+    --proto or -p [PROTOCOL]               : Choix du protocol :
+                                             arp, ip, tcp, udp, icmp (igmp pas encore implenté)
+    --index or -I [INDEX]                  : Numéro de l'interface reseau a utiliser
+    --device or -i [DEVICE]                : Nom de l'interface reseau a utiliser
+    --mtu or -m [MTU]                      : Valeur du MTU
+    --timeout or -E [TIMEOUT]              : Temp de pause entre l'envoie entre chaque paquet
+    --ign-echo                             : Ignore les icmp echo recu pendant la durée du programme
+
+    RECV PACKET CONFIG :
+    -------------------
+    --no-recv or -W                        : Ne pas lire les paquets recus
+    --verbose-recv or -V                   : Afficher les paquets recus le plus détaillé possible
+    --hexa-recv or -H                      : Afficher les paquets recus sous forme hexadecimal
+
+    COMMON ALL PROTOCOL ETHERNET HEADER :
+    ------------------------------------
+    --eth-src or -y [MAC]                  : L'adresse MAC de l'enetete ethernet
+    --eth-dst or -Y [MAC]                  : L'addresse MAC de l'entete ethernet
+
+    ARP HEADER :
+    -----------
+    --opcode or -o [OPCODE]                : Opcode
+    --ar-mac-src or -n [MAC]               : L'addresse MAC source
+    --ar-mac-dst or -N [MAC]               : L'adresse MAC de destination
+    --ar-ip-src or -b [IP]                 : L'adresse IP source
+    --ar-ip-dst or -B [IP]                 : L'adresse IP de destination
+
+    IP HEADER :
+    ----------
+    --source or -s [IP]                    : IP source
+    --rand-src or -k                       : Changer l'IP source pour chaque nouveau paquet
+    --rand-ttl                             : Changer la TTL pour chaque nouveau paquet
+    --rand-ip-id                           : Changer l'ID pour chaque nouveau paquet
+    --ip-id or -D [ID]                     : ID fixe
+    --ttl or -t [TTL]                      : TTL fixe (default 169)
+    --rr                                   : Option IP Record Route
+    --lsr [IP1,IP2,IP3,...]                : Option IP Loose Source Routing
+    --ssr [IP1,IP2,IP3,...]                : Option IP Strict Source Routing
+
+    COMMON ICMP AND IGMP HEADER :
+    ----------------------------
+    --type or -T [TYPE]                    : Type (default 8)
+    --code or -C [CODE]                    : Code (default 0)
+
+    IGMP HEADER :
+    ------------
+    --group or -G [GROUP]                  : pas encore implenté
+
+    ICMP HEADER :
+    ------------
+    --icmp-seq or -j [SEQ]                 : Sequence fixe
+    --icmp-id or -d [ID]                   : ID fixe
+    --router or -r [IP]                    : Adresse IP du touter (icmp type 5)
+
+    FOR ICMP TYPE : 3-4-5-11-12
+    ---------------------------
+    --add-type or -0 [PROTOCOL]            : Un protocol UDP or TCP (default TCP)
+    --add-ip-src or -1 [IP]                : IP source
+    --add-ip-dst or -2 [IP]                : IP destination
+    --add-p-src or -3 [PORT]               : Port source
+    --add-p-dst or -4 [PORT]               : Port destination
+    --add-ip-proto or -5 [PROTOCOL]        : Protocole UDP ou TCP
+    --add-ip-ttl or -6 [TTL]               : TTL
+    --add-ip-id or -7 [ID]                 : ID
+    --add-ip-fragof or -8 [OFFSET]         : Fragment offset
+    --add-ip-totlen or -Q [LEN]            : Taille du paquet
+    --add-tcp-seq or -9 [SEQ]              : Sequence TCP
+    --add-udp-len or -z [LEN]              : Taille de l'entete UDP
+    --add-udp-check or -J [CHECKSUM]       : Checksum de l'entete UDP
+
+    ICMP TYPE 13 & 14
+    -----------------
+    --time-orig [TIMESTAMP]                : Timestamp Origine
+    --time-send [TIMESTAMP]                : Timestamp de l'envoie du paquet (type 14)
+    --time-recv [TIMESTAMP]                : Timestamp de la reception du paquet (type 14)
+
+    COMMON TCP AND UDP HEADER :
+    --------------------------
+    --psrc or -x [PORT]                    : Port source
+    --pdst or -X [PORT]                    : Port destination
+
+    TCP HEADER :
+    -----------
+    --tcp-seq or -e [SEQ]                  : Séquence fixe
+    --tcp-ack or -a [AKUSED]               : Ackusé de reception fixe
+    --syn or -S                            : Flag Syn
+    --ack or -A                            : Flag ACK
+    --rst or -R                            : Flag RST
+    --fin or -F                            : Flag FIN
+    --psh or -P                            : Flag PSH
+    --urg or -U                            : Flag URG
+    --window or -w [SIZE]                  : Taille de la fenetre
+    --urgptr or -u [OFFSET]                : Offset des données urgente
+    --mss or -M [SIZE]                     : Option MAximum Segment Size
+    --tcp-timestamp [TIMESTAMP]            : Option TCP Timestamp
+
+
+    ********
+    *  US  *
+    ********
+       ||
+       ||
+       \/
+
+
+  PROGRAM INFORMATION :
+  --------------------
+    --help or -h                           : -h print US help or  -hh print FR help.
+    --version or -v                        : Print program version.
+
+    PROGRAM CONFIG :
+    ---------------
+    --count or -c [COUNT]                  : Numbers of packet to send.
+    --data or -l [LEN DATA]                : Size of data.
+    --file or -f [FILE NAME]               : Read data of a file.
+    --proto or -p [PROTOCOL]               : Choose protocol :
+                                             arp, ip, tcp, udp, icmp (igmp not implented)
+    --index or -I [INDEX]                  : Number of network device
+    --device or -i [DEVICE]                : Nanme of network device
+    --mtu or -m [MTU]                      : MTU value
+    --timeout or -E [TIMEOUT]              : Timeout packet
+    --ign-echo                             : Ignore ICMP echo during starting program
+
+    RECV PACKET CONFIG :
+    -------------------
+    --no-recv or -W                        : Don't read the answers
+    --verbose-recv or -V                   : Print packet with more possible details
+    --hexa-recv or -H                      : Print packet in Hexadecimal
+
+    COMMON ALL PROTOCOL ETHERNET HEADER :
+    ------------------------------------
+    --eth-src or -y [MAC]                  : Ethernet MAC src
+    --eth-dst or -Y [MAC]                  : Ethernet MAC dst
+
+    ARP HEADER :
+    -----------
+    --opcode or -o [OPCODE]                : Opcode
+    --ar-mac-src or -n [MAC]               : ARP MAC src
+    --ar-mac-dst or -N [MAC]               : ARP MAC dst
+    --ar-ip-src or -b [IP]                 : ARP IP src
+    --ar-ip-dst or -B [IP]                 : ARP IP de dst
+
+    IP HEADER :
+    ----------
+    --source or -s [IP]                    : IP src
+    --rand-src or -k                       : Random src IP for new packet
+    --rand-ttl                             : Random TTL
+    --rand-ip-id                           : Random ID
+    --ip-id or -D [ID]                     : ID fixed
+    --ttl or -t [TTL]                      : TTL fixed (default 169)
+    --rr                                   : Option IP Record Route
+    --lsr [IP1,IP2,IP3,...]                : Option IP Loose Source Routing
+    --ssr [IP1,IP2,IP3,...]                : Option IP Strict Source Routing
+
+    COMMON ICMP AND IGMP HEADER :
+    ----------------------------
+    --type or -T [TYPE]                    : Type (default 8)
+    --code or -C [CODE]                    : Code (default 0)
+
+    IGMP HEADER :
+    ------------
+    --group or -G [GROUP]                  : Not implented
+
+    ICMP HEADER :
+    ------------
+    --icmp-seq or -j [SEQ]                 : Sequence fixed
+    --icmp-id or -d [ID]                   : ID fixed
+    --router or -r [IP]                    : Addr IP of the router (for ICMP type 5)
+
+    FOR ICMP TYPE : 3-4-5-11-12
+    ---------------------------
+    --add-type or -0 [PROTOCOL]            : protocol UDP or TCP (default TCP)
+    --add-ip-src or -1 [IP]                : IP src
+    --add-ip-dst or -2 [IP]                : IP dst
+    --add-p-src or -3 [PORT]               : Port src
+    --add-p-dst or -4 [PORT]               : Port dst
+    --add-ip-proto or -5 [PROTOCOL]        : Protocole UDP or TCP
+    --add-ip-ttl or -6 [TTL]               : TTL
+    --add-ip-id or -7 [ID]                 : ID
+    --add-ip-fragof or -8 [OFFSET]         : Fragment offset
+    --add-ip-totlen or -Q [LEN]            : Packet total size
+    --add-tcp-seq or -9 [SEQ]              : TCP sequence
+    --add-udp-len or -z [LEN]              : UDP header size
+    --add-udp-check or -J [CHECKSUM]       : UDP checksum
+ 
+    ICMP TYPE 13 & 14
+    -----------------
+    --time-orig [TIMESTAMP]                : Timestamp Origine
+    --time-send [TIMESTAMP]                : Timestamp to send (type 14)
+    --time-recv [TIMESTAMP]                : Timestamp to recv (type 14)
+
+    COMMON TCP AND UDP HEADER :
+    --------------------------
+    --psrc or -x [PORT]                    : Port src
+    --pdst or -X [PORT]                    : Port dst
+
+    TCP HEADER :
+    -----------
+    --tcp-seq or -e [SEQ]                  : Fixed sequence
+    --tcp-ack or -a [AKUSED]               : Acknowledgement value
+    --syn or -S                            : Flag Syn
+    --ack or -A                            : Flag ACK
+    --rst or -R                            : Flag RST
+    --fin or -F                            : Flag FIN
+    --psh or -P                            : Flag PSH
+    --urg or -U                            : Flag URG
+    --window or -w [SIZE]                  : Window size
+    --urgptr or -u [OFFSET]                : Urgent offset into data
+    --mss or -M [SIZE]                     : Option MAximum Segment Size
+    --tcp-timestamp [TIMESTAMP]            : Option TCP Timestamp

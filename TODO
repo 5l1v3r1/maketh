@@ -1,0 +1,7 @@
+
+  TODO :
+   - Implenter IPv6  
+   - Cree des IP a partir d'un masque de sous-reseau
+   - Implenter IGMP
+   - Voir si il y a pas des 0 a ajouter a la fin du paquet a cause de l'entete ethernet
+   - Utiliser sysctl pour ignore les icmp echo a la place d'écrire dans le fichier directement

@@ -1,0 +1,18 @@
+
+	ChangeLog
+
+
+  -Version Beta 0.2.0
+	- Program is now working for BSD system, but is testing version 
+	  (just tested on FreeBSD 7.2)
+	- Use autotool for compiling program
+
+  -Version 0.1.1
+	- Create a file header for all source file
+
+  -Version Beta 0.1.0
+	- Beta version for linux only
+
+
+  -Version Beta 0.0.1
+	- Testing version for linux

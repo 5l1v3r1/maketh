@@ -1,0 +1,23 @@
+
+
+	INSTALL
+
+    Compil program :
+    ----------------
+	$ configure
+	$ make
+
+    If you want copy program in /usr/sbin :
+    ---------------------------------------
+	$ make install
+
+    Clean Install :
+    ---------------
+        $ make clean
+
+    Uninstall :
+    -----------
+	$ make uninstall
+
+
+	/!\ Binary make in src/ dir
